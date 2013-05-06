@@ -1,0 +1,5 @@
+*.dll
+obj/
+packages/
+*.user
+Nwd.v11.suo
