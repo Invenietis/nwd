@@ -20,6 +20,17 @@ namespace Nwd.Framework
 
         public void ProcessRequest( HttpContext context )
         {
+            string pathAndQuery = context.Request.Url.PathAndQuery;
+            pathAndQuery = pathAndQuery.Trim('/').ToLowerInvariant();
+            if( pathAndQuery == String.Empty || pathAndQuery == "index" )
+            {
+                // Invoke our controller
+            }
+            else
+            {
+                // 404, no controller to invoke.
+                context.Response.StatusCode = 404;
+            }
         }
     }
 }
