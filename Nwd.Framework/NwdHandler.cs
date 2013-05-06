@@ -25,6 +25,14 @@ namespace Nwd.Framework
             if( pathAndQuery == String.Empty || pathAndQuery == "index" )
             {
                 // Invoke our controller
+                // Need to find a way to get a controller !
+                // What is a controller here ? This is a class that owns methods. 
+                // But, what will be the search key ? How we associates a controller with a request URL Get ?
+                string controllerName = ControllerFinder.ExtractControllerNameFrom( context.Request ); // ?
+                
+                // In order to find a class, in the .Net App Domain, we use reflection.
+                object controller = ControllerFinder.CreateControllerBy( controllerName );
+                
             }
             else
             {
