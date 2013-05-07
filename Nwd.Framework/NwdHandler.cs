@@ -20,36 +20,24 @@ namespace Nwd.Framework
 
         public void ProcessRequest( HttpContext context )
         {
-            string pathAndQuery = context.Request.Url.PathAndQuery;
-            pathAndQuery = pathAndQuery.Trim( '/' ).ToLowerInvariant();
-            if( pathAndQuery == String.Empty || pathAndQuery == "index" )
+            // Invoke our controller
+            // Need to find a way to get a controller !
+            // What is a controller here ? This is a class that owns methods. 
+            // But, what will be the search key ? How we associates a controller with a request URL Get ?
+
+            RouteContext routeContext = RouteExtractor.Extract( context.Request );
+
+            object controller = ControllerFinder.CreateControllerBy( routeContext.ControllerName );
+            if( controller != null )
             {
-                // Invoke our controller
-                // Need to find a way to get a controller !
-                // What is a controller here ? This is a class that owns methods. 
-                // But, what will be the search key ? How we associates a controller with a request URL Get ?
-                string controllerName = ControllerFinder.ExtractControllerNameFrom( context.Request ); // ?
-
-                // In order to find a class, in the .Net App Domain, we use reflection.
-                object controller = ControllerFinder.CreateControllerBy( controllerName );
-
-                if( controller != null )
-                {
-                    object result = controller.GetType().GetMethod( "Index" ).Invoke( controller, null );
-
-                    context.Response.Write( result );
-
-                    context.Response.StatusCode = 200;
-                }
-                else
-                {
-                    NotFoundCase( context );
-                }
+                ControllerMethodResult result = MethodInvoker.InvokeControllerMethod( controller, routeContext );
+                result.Execute( context );
             }
             else
             {
                 NotFoundCase( context );
             }
+
         }
 
         private static void NotFoundCase( HttpContext context )

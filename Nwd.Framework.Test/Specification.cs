@@ -12,9 +12,11 @@ namespace Nwd.Framework.Test
         /// This method by calling my website by using GET: http://mywebsite/ and http://mywebsite/index
         /// </summary>
         /// <returns></returns>
-        public string Index()
+        public ControllerMethodResult Index( string name )
         {
-            return "Hello world";
+            object model = name.ToUpperInvariant();
+            
+            return new SimpleViewResult( model );
         }
     }
 }

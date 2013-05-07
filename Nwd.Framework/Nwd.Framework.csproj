@@ -40,9 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Intex\IntexViewResult.cs" />
+    <Compile Include="MethodInvoker.cs" />
     <Compile Include="ControllerFinder.cs" />
+    <Compile Include="ControllerMethodResult.cs" />
+    <Compile Include="Intex\IntexView.cs" />
+    <Compile Include="Intex\IntexViewEngine.cs" />
+    <Compile Include="Simple\SimpleViewResult.cs" />
     <Compile Include="NwdHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RouteExtractor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

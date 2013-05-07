@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Nwd.Framework;
 
 namespace Nwd.Controllers
 {
@@ -11,9 +12,9 @@ namespace Nwd.Controllers
         /// This method by calling my website by using GET: http://mywebsite/ and http://mywebsite/index
         /// </summary>
         /// <returns></returns>
-        public string Index()
+        public ControllerMethodResult Index( string name )
         {
-            return "Hello world";
-        } 
+            return new SimpleViewResult( name.ToUpperInvariant() );
+        }
     }
 }
